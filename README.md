@@ -24,11 +24,16 @@ Un dockerfile permet de représenter les différentes couches à mettre en place
 
 #### Voici un guide :
 ```
-  **FROM** : Permet de spécifier l'image qui servira de base pour notre propre image.  
+  **FROM** : Permet de spécifier l'image qui servira de base pour notre propre image.
+
   **RUN**  : Permet d'exécuter des commandes. Il servira surtout à installer / créer
-             l'arborescence de notre image.  
-  **EXPOSE** : Permet d'ouvrir un port.  
-  **CMD**  : Permet de spécifier la commande à exécuter à la création du conteneur.  
+             l'arborescence de notre image.
+
+  **EXPOSE** : Permet d'ouvrir un port.
+
+  **CMD**  : Permet de spécifier la commande à exécuter à la création du conteneur.
+
   **ENTRYPOINT** : Permet de spécifier l'exécutable par défaut à la création du conteneur.
+
   **COPY**  : Permet de copier un fichier/ un ensemble de fichiers dans le container.
 ```
