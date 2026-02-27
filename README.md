@@ -20,3 +20,14 @@ C’est le cœur du mécanisme de partage des conteneurs : on distribue une imag
 Dans l’écosystème de Docker, une image sert de modèle **immuable** pour lancer des conteneurs.
 
 ### Dockerfile
+Un dockerfile permet de représenter les différentes couches à mettre en place pour construire une image.
+
+#### Voici un guide :
+```
+  **FROM** : Permet de spécifier l'image qui servira de base pour notre propre image.  
+  **RUN**  : Permet d'exécuter des commandes. Il servira surtout à installer / créer l'arborescence de notre image.  
+  **EXPOSE** : Permet d'ouvrir un port.  
+  **CMD**  : Permet de spécifier la commande à exécuter à la création du conteneur.  
+  **ENTRYPOINT** : Permet de spécifier l'exécutable par défaut à la création du conteneur.
+  **COPY**  : Permet de copier un fichier/ un ensemble de fichiers dans le container.
+```
