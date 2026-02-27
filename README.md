@@ -1,6 +1,6 @@
 # Docker-guide
 
-## Docker ? What is this ?
+## Docker ? c'est quoi ?
 Docker est un gestionnaire de **conteneurs**.
 L’intérêt est de rendre des outils et des environnements de travail **portables**.
 Imaginons que vous vouliez travailler sur un projet de groupe avec un ami. Qu’est-ce qui vous garantit d’avoir la même version du langage que votre camarade ? De même pour le système d’exploitation ou encore pour le compilateur.
