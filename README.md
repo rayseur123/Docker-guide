@@ -36,4 +36,6 @@ Un dockerfile permet de représenter les différentes couches à mettre en place
 **ENTRYPOINT** : Permet de spécifier l'exécutable par défaut à la création du conteneur.
 
 **COPY**  : Permet de copier un fichier/ un ensemble de fichiers dans le container.
+
+**ADD**   : Similaire à COPY avec de légère différences.
 ```
