@@ -18,3 +18,5 @@ Là où un conteneur cherche, en théorie, à inclure uniquement ce qui est néc
 Une image est un fichier permettant de créer un conteneur **préconfiguré**.
 C’est le cœur du mécanisme de partage des conteneurs : on distribue une image, et chacun peut créer un conteneur identique à partir de celle-ci.
 Dans l’écosystème de Docker, une image sert de modèle **immuable** pour lancer des conteneurs.
+
+### Dockerfile
