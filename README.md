@@ -39,7 +39,7 @@ Dans l’écosystème Docker, une image sert de modèle **immuable** pour lancer
 Un Dockerfile décrit les différentes étapes pour construire une image.  
 
 Principales instructions :  
-```dockerfile
+```
 FROM     : Spécifie l'image de base à utiliser pour construire notre image.
 RUN      : Exécute des commandes, principalement pour installer des logiciels ou configurer l’image.
 EXPOSE   : Ouvre un port pour permettre la communication avec le conteneur.
@@ -47,3 +47,4 @@ CMD      : Définit la commande à exécuter lors du démarrage du conteneur.
 ENTRYPOINT: Spécifie l’exécutable par défaut du conteneur.
 COPY     : Copie des fichiers ou dossiers depuis l’hôte vers le conteneur.
 ADD      : Similaire à COPY, avec quelques fonctionnalités supplémentaires (extraction d’archives, téléchargement depuis une URL).
+```
