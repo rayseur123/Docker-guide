@@ -48,3 +48,17 @@ ENTRYPOINT: Spécifie l’exécutable par défaut du conteneur.
 COPY     : Copie des fichiers ou dossiers depuis l’hôte vers le conteneur.
 ADD      : Similaire à COPY, avec quelques fonctionnalités supplémentaires (extraction d’archives, téléchargement depuis une URL).
 ```
+
+---
+
+## Docker compose
+Docker Compose est un outil permettant de gérer un ensemble de services répartis dans plusieurs conteneurs.
+Il fournit plusieurs commandes pour gérer vos conteneurs sans avoir à les manipuler individuellement.
+
+Exemples de commandes :
+```
+docker compose build   : Crée l'image de tous les services définis dans le compose.yaml.
+docker compose run     : Construit et lance tous les conteneurs nécessaires à l'exécution des services.
+docker compose down    : Arrête et supprime les conteneurs.
+docker compose stop    : Arrête les conteneurs sans les supprimer.
+```
