@@ -1,41 +1,49 @@
-# Docker-guide
+# Docker Guide
 
-## Docker ? c'est quoi ?
-Docker est un gestionnaire de **containers**.
-L’intérêt est de rendre des outils et des environnements de travail **portables**.
-Imaginons que vous vouliez travailler sur un projet de groupe avec un ami. Qu’est-ce qui vous garantit d’avoir la même version du langage que votre camarade ? De même pour le système d’exploitation ou encore pour le compilateur.
-Docker permet ainsi de créer des environnements **isolés**, **légers** et **facilement partageables**.
+## Docker, c’est quoi ?
+Docker est un gestionnaire de **conteneurs**.  
+Son intérêt principal est de rendre des outils et des environnements de travail **portables** et reproductibles.  
 
-### Container
-On peut voir un conteneur comme une **application isolée**.
-Celui-ci embarque tout le nécessaire pour fonctionner (code, dépendances, bibliothèques, fichiers de configuration, etc.).
+Par exemple, si vous travaillez sur un projet en groupe avec un ami, comment être sûr que vous avez exactement la même version du langage, du système d’exploitation ou du compilateur ?  
+Docker permet de créer des environnements **isolés**, **légers** et **facilement partageables** pour résoudre ce problème.
 
-#### Container vs Virtual machine
-Une machine virtuelle contient tout ce qui est nécessaire pour simuler un système d’exploitation complet.
-Là où un conteneur cherche, en théorie, à inclure uniquement ce qui est nécessaire au fonctionnement de l’application qui lui est dédiée.
+---
 
-### Images
-Une image est un fichier permettant de créer un conteneur **préconfiguré**.
-C’est le cœur du mécanisme de partage des conteneurs : on distribue une image, et chacun peut créer un conteneur identique à partir de celle-ci.
-Dans l’écosystème de Docker, une image sert de modèle **immuable** pour lancer des conteneurs.
+## Conteneur
+Un conteneur peut être vu comme une **application isolée**.  
+Il contient tout ce dont elle a besoin pour fonctionner : le code, les dépendances, les bibliothèques, les fichiers de configuration, etc.
 
-### Dockerfile
-Un dockerfile permet de représenter les différentes couches à mettre en place pour construire une image.
+---
 
-#### Voici un guide :
-```
-**FROM** : Permet de spécifier l'image qui servira de base pour notre propre image.
+## Volumes
+Les volumes permettent de stocker des données **persistantes**.  
+Ils se connectent aux conteneurs et permettent de conserver les informations même si le conteneur est supprimé.  
+Ils sont particulièrement utiles pour les bases de données.
 
-**RUN**  : Permet d'exécuter des commandes. Il servira surtout à installer / créer
-           l'arborescence de notre image.
+---
 
-**EXPOSE** : Permet d'ouvrir un port.
+## Conteneur vs Machine virtuelle
+- Une **machine virtuelle** simule un système d’exploitation complet avec tous ses composants.  
+- Un **conteneur** n’inclut que ce qui est nécessaire pour exécuter l’application qui lui est dédiée, ce qui le rend plus léger et rapide à lancer.
 
-**CMD**  : Permet de spécifier la commande à exécuter à la création du conteneur.
+---
 
-**ENTRYPOINT** : Permet de spécifier l'exécutable par défaut à la création du conteneur.
+## Images
+Une image est un fichier permettant de créer un conteneur **préconfiguré**.  
+C’est le cœur du partage des conteneurs : on distribue une image, et chacun peut créer un conteneur identique à partir de celle-ci.  
+Dans l’écosystème Docker, une image sert de modèle **immuable** pour lancer des conteneurs.
 
-**COPY**  : Permet de copier un fichier/ un ensemble de fichiers dans le container.
+---
 
-**ADD**   : Similaire à COPY avec de légère différences.
-```
+## Dockerfile
+Un Dockerfile décrit les différentes étapes pour construire une image.  
+
+Principales instructions :  
+```dockerfile
+FROM     : Spécifie l'image de base à utiliser pour construire notre image.
+RUN      : Exécute des commandes, principalement pour installer des logiciels ou configurer l’image.
+EXPOSE   : Ouvre un port pour permettre la communication avec le conteneur.
+CMD      : Définit la commande à exécuter lors du démarrage du conteneur.
+ENTRYPOINT: Spécifie l’exécutable par défaut du conteneur.
+COPY     : Copie des fichiers ou dossiers depuis l’hôte vers le conteneur.
+ADD      : Similaire à COPY, avec quelques fonctionnalités supplémentaires (extraction d’archives, téléchargement depuis une URL).
