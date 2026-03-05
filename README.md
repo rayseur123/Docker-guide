@@ -62,3 +62,25 @@ docker compose run     : Construit et lance tous les conteneurs nécessaires à 
 docker compose down    : Arrête et supprime les conteneurs.
 docker compose stop    : Arrête les conteneurs sans les supprimer.
 ```
+
+exemple d'un compose.yaml :
+```
+services:
+  nginx:
+    build:
+      nginx/
+    ports:
+      - "443:443"
+
+  mariadb:
+    build:
+      mariadb/
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
+
+```
