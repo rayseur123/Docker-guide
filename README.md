@@ -98,6 +98,94 @@ volumes:
   db_data:
 
 ```
+Exemple d'un compose.yaml complet pour inception :
+```
+services:
+  mariadb:
+    build: mariadb/
+    networks:
+      - wp_net
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    env_file:
+      - .env
+    secrets:
+      - db_password
+    restart: always
+    healthcheck:
+      test: ["CMD", "mariadb-admin", "ping", "-h", "localhost", "--password=$$(cat /run/secrets/db_password)"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  wordpress:
+    build: wordpress/
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    networks:
+      - wp_net
+    volumes:
+      - wp_data:/var/www/html
+    env_file:
+      - .env
+    secrets:
+      - db_password
+      - wp_admin_pwd
+      - wp_admin_mail
+      - wp_admin_user
+      - wp_user_pwd
+      - wp_user_mail
+      - wp_user_user
+    restart: always
+
+  nginx:
+    build: nginx/
+    depends_on:
+      wordpress:
+        condition: service_started
+    networks:
+      - wp_net
+    ports:
+      - "443:443"
+    volumes:
+      - wp_data:/var/www/html
+    restart: always
+
+volumes:
+  db_data:
+    driver_opts:
+      type: none
+      device: "/home/njooris/data/db/"
+      o: bind
+  wp_data:
+    driver_opts:
+      type: none
+      device: "/home/njooris/data/wordpress/"
+      o: bind
+
+secrets:
+  db_password:
+    file: ./.secrets/db_password.txt
+  wp_admin_pwd:
+    file: ./.secrets/wp_admin_password.txt
+  wp_admin_mail:
+    file: ./.secrets/wp_admin_mail.txt
+  wp_admin_user:
+    file: ./.secrets/wp_admin_user.txt
+  wp_user_pwd:
+    file: ./.secrets/wp_user_password.txt
+  wp_user_mail:
+    file: ./.secrets/wp_user_mail.txt
+  wp_user_user:
+    file: ./.secrets/wp_user_user.txt
+networks:
+  wp_net:
+    driver: bridge
+
+```
 
 ## Docker networking
 Docker propose un système de réseau virtuel entre les conteneurs.
