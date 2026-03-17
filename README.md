@@ -98,3 +98,20 @@ volumes:
   db_data:
 
 ```
+
+## Docker networking
+Docker propose un système de réseau virtuel entre les conteneurs.
+C’est grâce à cet outil que l’on peut connecter les conteneurs entre eux et leur permettre de communiquer.
+
+Docker intègre un DNS interne qui permet de remplacer les adresses IP par les noms de services.
+Ainsi, un conteneur peut accéder à un autre simplement en utilisant son nom (ex : database, backend, etc.), sans avoir besoin de connaître son IP.
+
+Docker propose plusieurs types de réseaux, chacun ayant un usage spécifique :
+
+```
+bridge   : Réseau par défaut. Permet la communication entre conteneurs sur une même machine.
+host     : Le conteneur partage directement le réseau de la machine hôte (pas d’isolation réseau).
+none     : Aucun réseau (le conteneur est totalement isolé).
+overlay  : Permet de connecter des conteneurs sur plusieurs machines.
+macvlan  : Attribue une adresse IP du réseau physique au conteneur (comme une machine réelle).
+```
