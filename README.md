@@ -20,6 +20,13 @@ Les volumes permettent de stocker des données **persistantes**.
 Ils se connectent aux conteneurs et permettent de conserver les informations même si le conteneur est supprimé.  
 Ils sont particulièrement utiles pour les bases de données.
 
+### Volumes vs Bind mount
+Il existe deux façons principales de persister des données avec Docker : les volumes et les bind mounts.
+- **Un volume** est **géré directement par Docker**. Il est stocké dans un emplacement spécifique sur le host (souvent dans /var/lib/docker/volumes).
+Docker s’occupe entièrement de sa gestion (création, suppression, isolation).
+
+- **Un bind mount** consiste à lier un dossier ou fichier du host à un chemin dans le conteneur.
+Ici, les données restent entièrement contrôlées par le **système hôte, pas par Docker.**
 ---
 
 ## Conteneur vs Machine virtuelle
@@ -36,7 +43,11 @@ Dans l’écosystème Docker, une image sert de modèle **immuable** pour lancer
 ---
 
 ## Dockerfile
-Un Dockerfile décrit les différentes étapes pour construire une image.  
+Un Dockerfile est constitué d’une succession d’instructions (FROM, RUN, COPY, etc.).
+Chaque instruction crée une couche (layer).
+
+Une couche correspond à une modification du système de fichiers de l’image.
+Ces couches sont empilées les unes sur les autres pour former l’image finale. 
 
 Principales instructions :  
 ```
@@ -48,6 +59,9 @@ ENTRYPOINT: Spécifie l’exécutable par défaut du conteneur.
 COPY     : Copie des fichiers ou dossiers depuis l’hôte vers le conteneur.
 ADD      : Similaire à COPY, avec quelques fonctionnalités supplémentaires (extraction d’archives, téléchargement depuis une URL).
 ```
+Ici, nous parlons de couches : l’intérêt est donc d’empiler des instructions.
+Une fois une couche exécutée, elle n’est plus modifiable.
+L’avantage est de gagner du temps lors du rebuild : si la 3eme couche est modifiée, la reconstruction reprendra à partir de celle-ci et évitera de réexécuter les couches précédentes.
 
 ---
 
